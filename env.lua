@@ -1,0 +1,6 @@
+require 'nn'
+require 'cutorch'
+require 'cunn'
+require 'audio'
+require 'signal'
+require 'gnuplot'
