@@ -7,7 +7,8 @@ require 'audio'
 require 'signal'
 require 'gnuplot'
 require 'torchx'
-require('./sampleAq.lua')
+require 'image'
+require('./sampleAq')
 
 soundsPath  = '/afs/ee.cooper.edu/courses/ece412/eventDetectionData/singlesounds/sounds'
 
@@ -25,21 +26,22 @@ s = torch.initialSeed()
 logFile:write(string.format('Seed: %d\n',s))
 logFile:close()
 
-classCriterion = nn.ClassNLLCriterion()
-classCriterion:cuda()
+criterion = nn.ClassNLLCriterion()
+criterion:cuda()
 
-nEpochs = 4
+nEpochs = 1e3
 epochSize = 400
 epoch = 1
+batchSize = 32
 cvError = torch.Tensor(nEpochs)
 
 optimState = {
-    learningRate = 1e-2,
-    weightDecay = 1e-6, 
+    learningRate = 1e-4,
+    weightDecay = 0, 
     momentum = 0.9,
     learningRateDecay = 0
 }
 
 optimMethod = optim.nag
 
-model = 'rnn.lua'
+model = 'model.lua'

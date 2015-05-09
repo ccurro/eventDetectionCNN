@@ -152,16 +152,19 @@ for i = 1,#valSet do
 end
 
 trainClassSuperFrames = {}
+for i = 1,16 do
+    table.insert(trainClassSuperFrames,{})
+end
 
 for k,v in ipairs(trainSuperFrames) do
     local frame = {}
     if v['event'] then
-        frame['label'] = v['label']
+        -- frame['label'] = v['label']
+        frame['audio'] = v['audio']
+        table.insert(trainClassSuperFrames[v['label']],frame)
     else
         frame['label'] = 17 -- none
     end
-    frame['audio'] = v['audio']
-    table.insert(trainClassSuperFrames,frame)
 end
 
 shuffle(trainClassSuperFrames)
@@ -198,11 +201,11 @@ for k,v in ipairs(valSuperFrames) do
     local frame = {}
     if v['event'] then
         frame['label'] = v['label']
+        frame['audio'] = v['audio']
+        table.insert(valClassSuperFrames,frame)
     else
         frame['label'] = 17 -- none
     end
-    frame['audio'] = v['audio']
-    table.insert(valClassSuperFrames,frame)
 end
 
 shuffle(valClassSuperFrames)
