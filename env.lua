@@ -10,6 +10,8 @@ require 'torchx'
 require 'image'
 require('./sampleAq')
 
+cutorch.setDevice(2) -- set to Tesla
+
 soundsPath  = '/afs/ee.cooper.edu/courses/ece412/eventDetectionData/singlesounds/sounds'
 
 labelsPath = {}
@@ -36,7 +38,7 @@ batchSize = 32
 cvError = torch.Tensor(nEpochs)
 
 optimState = {
-    learningRate = 1e-4,
+    learningRate = 1e-6,
     weightDecay = 0, 
     momentum = 0.9,
     learningRateDecay = 0

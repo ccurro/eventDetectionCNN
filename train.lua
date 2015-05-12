@@ -25,7 +25,7 @@ for t = 1,epochSize do
          local f = 0;
          local oHat = mdl:forward(batch)
          f = f + criterion:forward(oHat,targets)
-         mdl:backward(batch,criterion:backward(oHat,targets)) --problem line
+         mdl:backward(batch,criterion:backward(oHat,targets))
 	      epochError = epochError + f
             print('# of Examples:',t*batchSize,'Error:',f)
             return f,gradParameters

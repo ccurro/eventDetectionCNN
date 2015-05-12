@@ -3,7 +3,7 @@ dofile('loadData.lua')
 dofile(model)
 
 -- batch, targets = getTrainSample()
--- x = net:forward(batch)
+-- x = mdl:forward(batch)
 
 -- print(x:size())
 
